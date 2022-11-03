@@ -1,9 +1,14 @@
 ﻿using EF;
+
 public class Programm
 {
 
     public static void Main()
     {
+
+        
+        
+        
         Console.WriteLine("---Test EF Core---");
         using (ApplicationContext db = new ApplicationContext())
         {
