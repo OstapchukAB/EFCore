@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace EF
 {
-     public static class Config
+    public static class Config
     {
         public static string? EXE_PATH => System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
 
@@ -21,10 +21,10 @@ namespace EF
             }
         }
         public static string DisplayableVersion => $"{Version} ({BuildDate})";
-       
+
         static Config()
         {
-                 
+
         }
 
 

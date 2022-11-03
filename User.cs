@@ -1,12 +1,13 @@
 
-namespace EF{
-public class User
+namespace EF
 {
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public int Age { get; set; }
+    public class User
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public int Age { get; set; }
 
-    public DateTime Dt {get;set;} =DateTime.Now;  
-}
+        public DateTime? Dt { get; set; } = DateTime.Now;
+    }
 
 }
