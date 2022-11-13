@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221102145623_EditUserDatetime2")]
-    partial class EditUserDatetime2
+    [Migration("20221113185647_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace EFCore.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Dt")
+                    b.Property<DateTime?>("Dt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

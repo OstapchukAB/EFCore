@@ -1,4 +1,6 @@
 ﻿using EF;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 public class Programm
 {
@@ -6,13 +8,24 @@ public class Programm
     public static void Main()
     {
 
-        
-        
-        
-        Console.WriteLine("---Test EF Core---");
-        using (ApplicationContext db = new ApplicationContext())
-        {
+        //Здесь устанавливаем настройки пути к БД для работы с БД
+        var builder = new ConfigurationBuilder();
+        // установка пути к текущему каталогу
+        builder.SetBasePath(Directory.GetCurrentDirectory());
+        // получаем конфигурацию из файла appsettings.json
+        builder.AddJsonFile("appsettings.json");
+        // создаем конфигурацию
+        var config = builder.Build();
+        // получаем строку подключения
+        string connectionString = config.GetConnectionString("SQlite");
 
+        var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+        var options = optionsBuilder.UseSqlite(connectionString).Options;
+        ///
+        Console.WriteLine("---Test EF Core---");
+        using (ApplicationContext db = new ApplicationContext(options))
+        {
+           // db.Database.EnsureCreated(); 
 
             GetData(db, "---до добавления---");
 
@@ -32,7 +45,7 @@ public class Programm
 
             GetData(db, "---после редактирования---");
 
-            users = db.Users.OrderBy(x=>x.Id).LastOrDefault();
+            users = db.Users.OrderBy(x => x.Id).LastOrDefault();
             if (users != null)
             {
                 Console.WriteLine($"удаляем последнюю запись:{users.Id}");
@@ -100,4 +113,6 @@ public class Programm
             db.SaveChanges();
         }
     }
+
+   
 }

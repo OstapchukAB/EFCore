@@ -5,8 +5,8 @@ namespace EF
 {
     public static class Config
     {
-        public static string? EXE_PATH => System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
-
+        public static string? EXE_PATH => AppDomain.CurrentDomain.BaseDirectory;
+        
 
         static Version? Version { get; } = Assembly.GetExecutingAssembly()?.GetName()?.Version;
 
@@ -24,7 +24,7 @@ namespace EF
 
         static Config()
         {
-
+            
         }
 
 
